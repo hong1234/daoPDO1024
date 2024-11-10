@@ -1,0 +1,19 @@
+#!/usr/bin/env php
+<?php
+require __DIR__.'/../vendor/autoload.php';
+
+use Symfony\Component\Console\Application;
+// use Demo\Service\Printer;
+use Demo\Command\AddUserCommand;
+use Demo\Command\ShowUsersCommand;
+
+/**
+ * Start the console application.
+ */
+$app = new Application('Hello', '1.0.0');
+//$app->setDefaultCommand("hello");
+
+$app->add(new AddUserCommand());
+$app->add(new ShowUsersCommand());
+
+$app->run();
