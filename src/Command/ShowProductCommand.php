@@ -36,18 +36,26 @@ class ShowProductCommand extends Command
     {
         $productid = $input->getArgument('productid');
 
-        $dao = new ProductDao();
-        $dao2 = new FeatureDao();
-        $product = $dao->getProductByID($productid);
-        $features = $dao2->getFeaturesByProductId($productid);
+        try {
+            $dao = new ProductDao();
+            $product = $dao->getProductByID($productid);
+            if(!is_null($product)){
 
-        if(!is_null($product)){
-            echo sprintf("%s-%s\n", $product->getId(), $product->getName());
-            foreach ($features as $feature) {
-                echo sprintf("%s\n", $feature->getName());
+                $dao2 = new FeatureDao();
+                $features = $dao2->getFeaturesByProductId($productid);
+    
+                echo sprintf("%s-%s\n", $product->getId(), $product->getName());
+                foreach ($features as $feature) {
+                    echo sprintf("%s\n", $feature->getName());
+                }
+                
+            } else {
+                $output->writeln("there is no Product with ID $productid");
             }
-        } else {
-            $output->writeln("there is no Product with ID $productid");
+
+        }  catch(\Exception $e) {
+            echo 'there is a error'; echo "\n";
+            echo $e->getMessage(); echo "\n";
         }
         
         return Command::SUCCESS;

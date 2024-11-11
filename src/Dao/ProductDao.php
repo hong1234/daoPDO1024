@@ -11,12 +11,14 @@ class ProductDao extends BaseDao {
     }
 
     public function getProductByID($productid): Product|null {
-        $stm = $this->db->prepare("SELECT * FROM products WHERE id = :proId LIMIT 1"); 
+        $sql = "SELECT * FROM products WHERE id = :proId LIMIT 1";
+        $stm = $this->db->prepare($sql); 
         $stm->bindParam(':proId', $productid);
         $stm->execute();
+        
         if ($stm->rowCount() > 0) {
-            $rs = $stm->fetch();
-            return $this->toObject($rs['name'], $rs['id']);
+            $row = $stm->fetch();
+            return $this->toObject($row['name'], $row['id']);
         }
         return null;
     }

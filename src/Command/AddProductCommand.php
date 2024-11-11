@@ -26,12 +26,12 @@ class AddProductCommand extends Command
 
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
-        $new_product_id = 0;
         $productname = $input->getArgument('productname');
         
         try {
             $dao = new ProductDao();
             $new_product_id = $dao->insert(new Product($productname));
+            $output->writeln("new Product has ID $new_product_id");
 
         }  catch(\Exception $e) {
             echo 'there is a error'; echo "\n";
@@ -39,7 +39,6 @@ class AddProductCommand extends Command
             //throw $e;
         }
         
-        $output->writeln("new Product has ID $new_product_id");
         return Command::SUCCESS;
     }
 

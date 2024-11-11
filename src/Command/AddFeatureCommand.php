@@ -29,18 +29,18 @@ class AddFeatureCommand extends Command
 
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
-        $new_feature_id = 0;
         $productid = $input->getArgument('productid');
         $feature   = $input->getArgument('feature');
 
         $dao  = new ProductDao();
-        $dao2 = new FeatureDao();
+        $product = $dao->getProductByID($productid);
+        
         try {
-
-            $product = $dao->getProductByID($productid);
             if(!is_null($product)){
+                $dao2 = new FeatureDao();
                 $new_feature_id = $dao2->insert(new Feature($feature, $productid));
                 $output->writeln("the new Feature has ID $new_feature_id");
+
             } else {
                 $output->writeln("there is no Product with ID $productid");
             }

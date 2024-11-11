@@ -44,13 +44,19 @@ class ShowUsersCommand extends Command
         // return this if there was no problem running the command
         // (it's equivalent to returning int(0))
 
-        $dao = new UserDao();
-        $users = $dao->getUsers();
-        $pr = new Printer($users);
-        // $this->pr->add(new Student('Anna4', 33, 'anna@yahoo.de', 'Uni Muen'));
-	    // $this->pr->add(new Banker('Bill4', 44, 'bill@yahoo.de', 'SSK Muenchen'));
+        try {
+            $dao = new UserDao();
+            $users = $dao->getUsers();
+            $pr = new Printer($users);
+            // $pr->add(new Student('Anna4', 33, 'anna@yahoo.de', 'Uni Muen'));
+	        // $pr->add(new Banker('Bill4', 44, 'bill@yahoo.de', 'SSK Muenchen'));
+            $pr->printAllOnConsole();
 
-        $pr->printAllOnConsole();
+        }  catch(\Exception $e) {
+            echo 'there is a error'; echo "\n";
+            echo $e->getMessage(); echo "\n";
+        } 
+
         return Command::SUCCESS;
 
         // or return this if some error happened during the execution

@@ -50,23 +50,25 @@ class UserDao extends BaseDao {
         return $temp;
     }
 
-    public function searchByEmail($useremail){
-        $statement = $this->db->prepare("SELECT * FROM users WHERE useremail LIKE :useremail");
+    public function searchByEmail($useremail) {
+        $sql = "SELECT * FROM users WHERE useremail LIKE :useremail";
+        $statement = $this->db->prepare($sql);
         $statement->bindValue(':useremail', '%'.$useremail.'%');
-        $statement->execute(); 
-        $users = $statement->fetchAll();
+        $statement->execute();
+
         $temp = array();
-        foreach ($users as $user) {
-            $temp[] = $this->toObject($user['username'], $user['useremail']);
+        while($row = $statement->fetch()) {
+            $temp[] = $this->toObject($row['username'], $row['useremail']);
         }
+
         return $temp;
     }
 
     public function toArray(User $user) {
         $temp = array();
-        $temp['username'] = $user->getName();
+        $temp['username']  = $user->getName();
         $temp['useremail'] = $user->getEmail();
-        $temp['password'] = md5($user->getPassword());
+        $temp['password']  = md5($user->getPassword());
         $temp['timestamp'] = time();
         return $temp;
     }

@@ -9,7 +9,7 @@ class DbConnect
 
     // private $host = 'localhost';
     // private $user = 'root';
-    // private $pass = 'Vuanh--66';
+    // private $pass = 'pw';
     // private $name = 'hongtest';
 
     // The db connection is established in the private constructor.
@@ -17,8 +17,7 @@ class DbConnect
     // {
     //       $this->connection = new PDO("mysql:host={$this->host};
     //       dbname={$this->name}", $this->user,$this->pass,
-    //       array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES 'utf8'"));
-        
+    //       array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES 'utf8'"));  
     // }
 
     private function __construct()

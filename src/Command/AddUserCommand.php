@@ -34,7 +34,6 @@ class AddUserCommand extends Command
 
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
-        $new_user_id = 0;
         $username = $input->getArgument('username');
         $email    = $input->getArgument('email');
         $password = $input->getArgument('password');
@@ -42,13 +41,13 @@ class AddUserCommand extends Command
         try {
             $dao = new UserDao();
             $new_user_id = $dao->insert(new User($username, $email, $password));
+            $output->writeln("new User has ID $new_user_id");
         }  catch(\Exception $e) {
             echo 'there is a error'; echo "\n";
             echo $e->getMessage(); echo "\n";
             //throw $e;
         }
         
-        $output->writeln("new User has ID $new_user_id");
         return Command::SUCCESS;
     }
 

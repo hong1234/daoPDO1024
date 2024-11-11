@@ -11,10 +11,12 @@ class FeatureDao extends BaseDao {
     }
 
     public function getFeaturesByProductId(int $productid): array {
-        $tem = array();
-        $stm = $this->db->prepare("SELECT * FROM features WHERE product_id = :proId"); 
+        $sql = "SELECT * FROM features WHERE product_id = :proId";
+        $stm = $this->db->prepare($sql); 
         $stm->bindParam(':proId', $productid);
         $stm->execute();
+
+        $tem = array();
         while($row = $stm->fetch()) {
             $tem[] = $this->toObject($row['name'], $row['product_id']);
         }
