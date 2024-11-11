@@ -28,7 +28,7 @@ class ShowUsersCommand extends Command
     protected function configure()
     {
         $this
-            ->setName('user-list')  // the command name
+            ->setName('show-user-list')  // the command name
             ->setDescription('user list')  // the description of the command
             ->setHelp('This command list users')  // defining the help (shown with -h option)
             ;

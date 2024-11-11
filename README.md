@@ -16,9 +16,16 @@ php app_show_users.php
 
 ## run commands 
 
-php bin/sym7console user-list
+php bin/sym7console add-product "<product name>"
 
-php bin/sym7console add-user <name> <email> <password>
+php bin/sym7console add-feature <productID> "<feature name>"
+
+php bin/sym7console show-product <productID>
+
+
+php bin/sym7console add-user "<name>" <email> <password>
+
+php bin/sym7console show-user-list
 
 ## run tests
 

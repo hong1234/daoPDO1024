@@ -2,7 +2,8 @@
 namespace Demo\Entity;
 
 class User implements PrintAble {
-    public $name;
+
+    private $name;
     private $email;
     private $password;
 
@@ -12,27 +13,27 @@ class User implements PrintAble {
         $this->password = $password;
     }
 
-    function getName(){
+    public function getName(){
         return $this->name;
     }
 
-    function setName($name){
+    public function setName($name){
         $this->name = $name;
     }
 
-    function getEmail(){
+    public function getEmail(){
         return $this->email;
     }
 
-    function setEmail($email){
+    public function setEmail($email){
         $this->email = $email;
     }
 
-    function getPassword(){
+    public function getPassword(){
         return $this->password;
     }
 
-    function setPassword($password){
+    public function setPassword($password){
         $this->password = $password;
     }
 
