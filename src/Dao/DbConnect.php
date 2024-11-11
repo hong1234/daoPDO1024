@@ -24,7 +24,7 @@ class DbConnect
     {
         try {
             $db = new PDO(
-              'mysql:host=127.0.0.1;port=3306;dbname=hongtest', // connect
+              'mysql:host=127.0.0.1;port=3306;dbname=hongtest7', // connect
               'root',     // user name
               'Vuanh--66' // password
             );

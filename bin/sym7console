@@ -9,6 +9,7 @@ use Demo\Command\ShowUsersCommand;
 use Demo\Command\AddProductCommand;
 use Demo\Command\AddFeatureCommand;
 use Demo\Command\ShowProductCommand;
+use Demo\Command\ProductListCommand;
 
 /**
  * Start the console application.
@@ -21,5 +22,6 @@ $app->add(new ShowUsersCommand());
 $app->add(new AddProductCommand());
 $app->add(new AddFeatureCommand());
 $app->add(new ShowProductCommand());
+$app->add(new ProductListCommand());
 
 $app->run();

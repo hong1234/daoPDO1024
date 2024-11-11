@@ -23,6 +23,15 @@ class ProductDao extends BaseDao {
         return null;
     }
 
+    public function getProducts(){
+        $sql = "SELECT id, name FROM products";
+        $tem = array();
+        foreach ($this->db->query($sql) as $row) {
+            $tem[] = $this->toObject($row['name'], $row['id']);
+        }
+        return $tem;
+    }
+
     public function insert(Product $product): int {
 
         $lastInsertId = 0;
